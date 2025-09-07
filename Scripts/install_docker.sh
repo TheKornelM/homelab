@@ -9,4 +9,5 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
 sudo apt update
 sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose
 
+sudo groupadd docker
 sudo usermod -aG docker $(whoami)
