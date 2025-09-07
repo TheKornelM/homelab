@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo apt -y install iptables apt-transport-https ca-certificates curl gnupg2 software-properties-common
+sudo apt -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common
 
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
@@ -9,5 +9,4 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
 sudo apt update
 sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose
 
-sudo groupadd docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker $(whoami)

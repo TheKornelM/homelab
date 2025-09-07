@@ -1,0 +1,26 @@
+
+name: thk-homelab
+services:
+  nginxproxymanager:
+    image: 'jc21/nginx-proxy-manager:latest' 
+    container_name: nginxproxymanager
+    restart: always 
+    ports:
+      - '80:80'
+      - '443:443' 
+    volumes:
+      - /var/lib/docker/volumes/nginx/data:/data
+      - /var/lib/docker/volumes/nginx/letsencrypt:/etc/letsencrypt
+
+  portainer-ce:
+      container_name: portainer
+      restart: always
+      volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          # named volume 'portainer_data' is marked as "external" (used by service 'portainer-ce'), so either remove "external" from volume definition or it needs to be created using: docker volume create portainer_data
+          - portainer_data:/data
+      image: portainer/portainer-ce:lts
+volumes:
+    portainer_data:
+        external: true
+        name: portainer_data
